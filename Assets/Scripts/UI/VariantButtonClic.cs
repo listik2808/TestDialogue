@@ -1,14 +1,16 @@
-﻿using System;
+﻿using Scrips.NPS;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Scrips.UI
 {
-    public class VariantButtonClic : MonoBehaviour
+    public abstract class VariantButtonClic : MonoBehaviour
     {
-        [SerializeField] private Button _button;
+        [SerializeField] protected Button _button;
 
-        public Action WasСhosen;
+        public Action OptionSelected;
+        public Action StopAnimation;
 
         private void OnEnable()
         {
@@ -22,7 +24,12 @@ namespace Scrips.UI
 
         private void ActivateDialog()
         {
-            WasСhosen?.Invoke();
+            OptionSelected?.Invoke();
+        }
+
+        public void Stop()
+        {
+            StopAnimation?.Invoke();
         }
     }
 }
